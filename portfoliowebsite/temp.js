@@ -434,15 +434,8 @@ console.clear()
           }
         }
       }
-    } else {
+   } else {
     }
   
-  
-  
-    // Check COndition - compare ticket details & Iparams
-  
-    // Yes -> Hide/Disable
-  
-    // No -> No Process
   }
   
