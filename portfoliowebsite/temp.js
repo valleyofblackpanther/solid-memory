@@ -362,6 +362,52 @@ console.clear()
       console.error(`Error occured detils:`, err);
     }
   
+    client.data.get("loggedInUser").then(
+      function (data) {
+        console.log("data >>>>>", data);
+
+        LOGGEDID = data.loggedInUser.contact.id;
+        console.log("logged id >>>>", LOGGEDID);
+
+        for(let eachI of agent_details){
+          eachI=JSON.parse(eachI)
+        console.log("fcuk >>>",typeof(eachI.id));
+        if (LOGGEDID === (eachI.id)) {
+          if (isdisable === true) {
+            for (let each of ticketField) {
+              client.interface
+                .trigger("disable", { id: each })
+                .then(function (data) {
+                  console.log("DISABLE DATA >>>>>", data);
+                })
+                .catch(function (error) {
+                  // error - error object
+                });
+            }
+          } else {
+            for (let each of ticketField) {
+              client.interface
+                .trigger("hide", { id: each })
+                .then(function (data) {
+                  console.log("HIDDEN DATA >>>>", data);
+                })
+                .catch(function (error) {
+                  // error - error object
+                });
+            }
+          }
+        } else {
+          console.log("No process");
+        }}
+      },
+      function (error) {
+        // failure operation
+      }
+    );
+  } catch (e) {
+    handleErr(e);
+  }
+}
     if (agentId === responderId) {
       if (actionnn === "dis") {
         function radioDisabled(ticketField) {
